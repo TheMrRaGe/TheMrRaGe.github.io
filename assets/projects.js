@@ -11,7 +11,8 @@
    summary   one or two sentences for the card
    details   array of paragraphs/bullets for the detail view
    art       generative thumbnail motif (see art.js) — or set `image` instead
-   image     optional path to a real screenshot/image
+   image     optional path to a real screenshot (used for the tile)
+   shots     optional [[path, caption], ...] shown in the detail panel
    repo      public repo URL, or null for private work
    live      live demo URL, or null
    featured  true to show on the home page
@@ -23,14 +24,23 @@ window.PROJECTS = [
     year: 2026,
     status: "Live",
     tags: ["ai", "web"],
-    stack: ["WebGPU", "ONNX", "MediaPipe", "JavaScript", "PWA"],
+    stack: ["WebGPU", "ONNX", "MediaPipe", "Python", "Android", "JavaScript"],
     summary:
-      "A phone web app that reads your facial expression and paints a landscape to match — with an image model running entirely on the phone.",
+      "A phone app that reads your face and paints a landscape to match, with an image model running entirely on the phone. Its sequel, the Mirror, is a live painting that evolves toward whatever you react to.",
     details: [
-      "Front camera → MediaPipe Face Landmarker (52 blendshapes, ~25 fps, on-device) → a mood vector of joy, surprise, anger, sadness and calm, calibrated to your neutral face.",
-      "Paints 512×512 scenes with a one-step SDXS diffusion UNet on WebGPU. All prompts are pre-encoded as CLIP embeddings, so no text encoder ships to the phone — moods blend by adding embeddings.",
-      "Learns from your reactions without retraining: a weighted ridge-regression reward model steers six style directions per mood, and an upper-confidence-bound bandit picks layouts you respond to.",
-      "PC painter mode streams a continuously repainted scene from a desktop GPU to budget phones; a real-time \"Mirror\" mode adds per-person recognition.",
+      "Front camera to MediaPipe Face Landmarker (52 blendshapes, about 25 fps, on-device) to a mood of joy, surprise, anger, sadness and calm, calibrated to your resting face.",
+      "Paints with a one-step SDXS diffusion model on WebGPU. Every prompt is pre-encoded as a CLIP embedding, so no text encoder ships to the phone and moods blend smoothly by adding embeddings.",
+      "Learns your taste without retraining: a ridge-regression reward model steers six style directions per mood, and a bandit returns to the layouts you respond to.",
+      "The Mirror streams a continuously repainted scene from a laptop GPU. Every few seconds it changes one part of the painting, reads the next second and a half of your face, and keeps the change or undoes it.",
+      "It reads expression, an emotion model and your pulse from skin colour (rPPG), scores each against your own normal, and learns per person with Thompson sampling. It recognises each viewer only if they opt in.",
+      "Two editions: Bliss keeps what you light up at; Unease keeps whatever makes you squirm while you keep watching. Paintings are combined from a space of about 6.3 quadrillion prompts.",
+      "Ships with a one-click Windows setup, an Android app that finds the laptop on Wi-Fi by itself or through a private relay away from home, and 60 fps blended playback.",
+    ],
+    image: "img/moodscape.webp",
+    shots: [
+      ["img/moodscape.webp", "Demo mode, cycling through the moods with the live sketch painter"],
+      ["img/moodscape-intro.webp", "Moodscape's start screen"],
+      ["img/moodscape-mirror.webp", "The Mirror's start screen"],
     ],
     art: "landscape",
     repo: "https://github.com/TheMrRaGe/moodscape",
@@ -71,6 +81,11 @@ window.PROJECTS = [
       "Wrote a connectome-mirroring step that rebuilds connections seen on only one hemisphere, taking left/right synaptic symmetry from 1.097 to 1.0001.",
       "Event-driven rewrite verified spike-for-spike against the dense path: 4.1× faster overall.",
       "Steering decoded from identified descending neurons with a 30-trial protocol (d′ = 4.21, p = 3e-11). Every claim — and every retraction — is recorded in FINDINGS.md.",
+    ],
+    image: "img/flybrain-flybench.webp",
+    shots: [
+      ["img/flybrain-flybench.webp", "Flybench: the whole-brain fly given a body and an environment"],
+      ["img/flybrain-flyroom.webp", "Flyroom: walking and flight driven by the connectome's descending neurons"],
     ],
     art: "neurons",
     repo: "https://github.com/TheMrRaGe/flybrain",
@@ -221,14 +236,19 @@ window.PROJECTS = [
     title: "Bored Pitty Kennel Club",
     year: 2024,
     status: "Shipped",
-    tags: ["web3", "web"],
-    stack: ["React", "Netlify", "NFT"],
+    tags: ["web3", "web", "trading"],
+    stack: ["React", "Solana", "Netlify"],
     summary:
-      "Mint site for an NFT collection, with collection carousel, team, FAQ and marketplace links.",
+      "Site for $PITTY, a Solana community token whose utility was trading bots, tools and an NFT collection.",
     details: [
-      "Built the React front end and deployed it on Netlify, listing on OpenSea, Magic Eden and Tensor.",
+      "React single-page site with animated hero, utility, NFT carousel, team and FAQ sections, deployed on Netlify.",
+      "Links out to Dexscreener, Magic Eden and Tensor for the token and the collection.",
     ],
-    image: "img/bpkc.avif",
+    image: "img/bpkc.webp",
+    shots: [
+      ["img/bpkc.webp", "The landing page"],
+      ["img/bpkc-values.webp", "The collection and the project's values"],
+    ],
     art: "dots",
     repo: "https://github.com/TheMrRaGe/BPKC",
     live: null,

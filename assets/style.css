@@ -249,3 +249,16 @@ dialog.sheet::backdrop { background: rgba(11, 26, 31, .72); backdrop-filter: blu
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
 }
+
+/* screenshots */
+.frame img { object-position: top center; }
+.row img.mini { object-position: top center; }
+figure.shots { margin: 0; background: var(--deep); }
+figure.shots .art { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: top center; }
+figure.shots figcaption { padding: 10px clamp(20px, 5vw, 44px) 0; font: 400 14px var(--display); color: var(--mist); }
+.strip { display: flex; gap: 10px; padding: 12px clamp(20px, 5vw, 44px) 16px; overflow-x: auto; }
+.strip button { all: unset; cursor: pointer; flex: 0 0 96px; aspect-ratio: 16 / 10; border-radius: 4px; overflow: hidden; outline: 2px solid transparent; outline-offset: 2px; opacity: .6; }
+.strip button img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+.strip button[aria-pressed="true"] { outline-color: var(--ember); opacity: 1; }
+.strip button:hover { opacity: 1; }
+.strip button:focus-visible { outline-color: var(--moon); }

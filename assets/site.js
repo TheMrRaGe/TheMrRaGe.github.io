@@ -106,7 +106,35 @@
     ].filter(Boolean).join("");
     sheet.innerHTML = `<button class="shut" aria-label="Close">×</button>`;
     sheet.querySelector(".shut").onclick = () => sheet.close();
-    sheet.appendChild(art(p, p.id, "art"));
+    if (p.shots && p.shots.length) {
+      const fig = document.createElement("figure");
+      fig.className = "shots";
+      const big = new Image();
+      big.className = "art";
+      const cap = document.createElement("figcaption");
+      const strip = document.createElement("div");
+      strip.className = "strip";
+      const show = (i) => {
+        big.src = p.shots[i][0];
+        big.alt = p.shots[i][1];
+        cap.textContent = p.shots[i][1];
+        strip.querySelectorAll("button").forEach((b, j) => b.setAttribute("aria-pressed", i === j));
+      };
+      if (p.shots.length > 1)
+        p.shots.forEach(([src, alt], i) => {
+          const b = document.createElement("button");
+          b.type = "button";
+          b.setAttribute("aria-label", "Show: " + alt);
+          b.innerHTML = `<img src="${esc(src)}" alt="">`;
+          b.onclick = () => show(i);
+          strip.appendChild(b);
+        });
+      fig.append(big, cap, strip);
+      show(0);
+      sheet.appendChild(fig);
+    } else {
+      sheet.appendChild(art(p, p.id, "art"));
+    }
     const body = document.createElement("div");
     body.className = "body";
     body.innerHTML = `
