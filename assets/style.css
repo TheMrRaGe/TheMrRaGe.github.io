@@ -1,17 +1,19 @@
-/* Palette — Moodscape's dusk
-   dusk  #10232a  page
-   tide  #183740  raised surfaces
-   moon  #f6e7c1  text
-   mist  #8fb8ba  secondary text, inhibitory neurons
-   ember #ff8a5b  spikes, links, focus */
+/* Palette — calcium-imaging false colour (the "magma" scale)
+   void  #140b1f  page
+   plum  #24152f  raised surfaces
+   bone  #f4ece4  text
+   haze  #b9a6c6  secondary text, inhibitory neurons
+   flare #ff5f6d  links, focus, cooling spikes
+   glow  #ffc857  a neuron at the moment it fires */
 :root {
-  --dusk: #10232a;
-  --tide: #183740;
-  --deep: #0b1a1f;
-  --moon: #f6e7c1;
-  --mist: #8fb8ba;
-  --ember: #ff8a5b;
-  --rule: rgba(246, 231, 193, 0.14);
+  --dusk: #140b1f;
+  --tide: #24152f;
+  --deep: #0c0614;
+  --moon: #f4ece4;
+  --mist: #b9a6c6;
+  --ember: #ff5f6d;
+  --glow: #ffc857;
+  --rule: rgba(244, 236, 228, 0.13);
   --display: "Bricolage Grotesque", system-ui, sans-serif;
   --text: "Source Serif 4", Georgia, serif;
   --gutter: clamp(16px, 4vw, 48px);
@@ -59,7 +61,7 @@ canvas, img { display: block; max-width: 100%; }
   align-content: end;
   overflow: hidden;
   background:
-    radial-gradient(120% 70% at 70% 0%, #1d4550 0%, transparent 60%),
+    radial-gradient(120% 70% at 70% 0%, #3a1a45 0%, transparent 60%),
     linear-gradient(var(--dusk), var(--deep));
 }
 .hero canvas {
@@ -80,12 +82,12 @@ canvas, img { display: block; max-width: 100%; }
   letter-spacing: -0.045em;
   font-variation-settings: "wght" 320, "wdth" 100, "opsz" 96;
   transition: font-variation-settings 0.25s linear;
-  text-shadow: 0 2px 40px rgba(11, 26, 31, 0.6);
+  text-shadow: 0 2px 40px rgba(12, 6, 20, 0.65);
 }
 .hero-foot { display: flex; justify-content: space-between; align-items: end; gap: 24px; flex-wrap: wrap; }
 .hero-foot p { margin: 0; font-size: clamp(18px, 2vw, 22px); max-width: 30em; }
-.readout { font: 400 15px/1.4 var(--display); color: var(--mist); text-align: right; max-width: 20em; }
-.readout b { color: var(--ember); font-weight: 600; font-variant-numeric: tabular-nums; }
+.readout { font: 400 15px/1.4 var(--display); color: var(--mist); max-width: 22em; }
+.readout b { color: var(--glow); font-weight: 600; font-variant-numeric: tabular-nums; }
 
 /* section heads */
 .section { padding-block: clamp(72px, 12vh, 140px); }
@@ -202,7 +204,7 @@ dialog.sheet {
   overflow-y: auto;
 }
 dialog.sheet[open] { animation: sheet-in .38s cubic-bezier(.2,.7,.2,1); }
-dialog.sheet::backdrop { background: rgba(11, 26, 31, .72); backdrop-filter: blur(4px); }
+dialog.sheet::backdrop { background: rgba(12, 6, 20, .74); backdrop-filter: blur(4px); }
 @keyframes sheet-in { from { transform: translateX(40px); opacity: 0; } }
 .sheet .art { aspect-ratio: 16 / 10; width: 100%; object-fit: cover; }
 .sheet .body { padding: 28px clamp(20px, 5vw, 44px) 56px; }

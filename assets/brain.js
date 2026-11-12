@@ -4,9 +4,10 @@
    The pointer injects current; spikes travel along edges as visible pulses.
    window.Brain.start(canvas, onRate) — onRate(spikesPerSecond, normalised 0..1). */
 (function () {
-  const EMBER = [255, 138, 91];
-  const MOON = [246, 231, 193];
-  const MIST = [143, 184, 186];
+  const GLOW = [255, 200, 87];   // the instant of a spike
+  const EMBER = [255, 95, 109];  // cooling after it
+  const MOON = [244, 236, 228];
+  const MIST = [185, 166, 198];
 
   function start(canvas, onRate) {
     const ctx = canvas.getContext("2d");
@@ -78,7 +79,7 @@
       ec.lineWidth = 0.6;
       for (const e of edges) {
         const A = N[e.a], B = N[e.b];
-        ec.strokeStyle = e.w < 0 ? "rgba(143,184,186,.10)" : "rgba(246,231,193,.08)";
+        ec.strokeStyle = e.w < 0 ? "rgba(185,166,198,.10)" : "rgba(244,236,228,.075)";
         ec.beginPath();
         ec.moveTo(A.x, A.y);
         ec.lineTo(B.x, B.y);
@@ -146,8 +147,9 @@
         const since = now - n.lastSpike;
         if (since < 260) {
           const k = 1 - since / 260;
-          const c = n.inh ? MIST : EMBER;
-          ctx.fillStyle = `rgba(${c[0]},${c[1]},${c[2]},${0.18 * k})`;
+          // amber at the spike, cooling to coral, like a calcium-imaging trace
+          const c = n.inh ? MIST : GLOW.map((g, i) => Math.round(EMBER[i] + (g - EMBER[i]) * k * k));
+          ctx.fillStyle = `rgba(${c[0]},${c[1]},${c[2]},${0.2 * k})`;
           ctx.beginPath();
           ctx.arc(n.x, n.y, 4 + 9 * k, 0, 7);
           ctx.fill();
