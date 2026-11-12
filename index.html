@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Heath Dale, developer</title>
+  <meta name="description" content="Heath Dale is an independent developer building software that senses and reacts: on-device AI, games, research simulations and trading systems.">
+  <meta property="og:title" content="Heath Dale, developer">
+  <meta property="og:description" content="On-device AI, a fruit-fly brain simulation, trading systems and mobile games.">
+  <meta name="theme-color" content="#10232a">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%2310232a'/><circle cx='11' cy='12' r='3' fill='%23f6e7c1'/><circle cx='21' cy='20' r='4' fill='%23ff8a5b'/><path d='M11 12L21 20' stroke='%23f6e7c1' stroke-width='1.5'/></svg>">
+</head>
+<body>
+  <nav class="nav" aria-label="Main">
+    <a class="home" href="./">Heath Dale</a>
+    <ul>
+      <li><a href="#selected">Work</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="#about">About</a></li>
+    </ul>
+  </nav>
+
+  <header class="hero">
+    <canvas id="net" aria-label="An interactive simulation of a small spiking neural network"></canvas>
+    <div class="hero-copy">
+      <h1>Heath<br>Dale</h1>
+      <div class="hero-foot">
+        <p>Independent developer. I build software that senses and reacts: an image model that paints what your face is feeling, a simulated fruit-fly brain, trading systems and games.</p>
+        <p class="readout" aria-live="off"><b id="rate">0</b> spikes a second across <span id="count">a thousand</span> simulated neurons. <span id="hint">Move across the network to make it fire.</span> The name above gets bolder as it does.</p>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section pad" id="selected">
+      <div class="section-head">
+        <h2>Selected work</h2>
+        <a href="gallery.html" id="all">See every project</a>
+      </div>
+      <ul class="rows" id="work"></ul>
+    </section>
+
+    <section class="section pad" id="about">
+      <div class="about">
+        <div class="measure">
+          <h2>Generalist by trade</h2>
+          <p>I've spent years doing contract work across a wide range of fields, which taught me to learn a new domain fast and ship something solid in it.</p>
+          <p>These days most of my time goes into my own products: generative AI that runs on a phone, games that respond to how the player feels, and research into whether a real biological brain can drive a game character.</p>
+          <p>I'm open to contract and freelance work.</p>
+        </div>
+        <dl class="skills" id="skills"></dl>
+      </div>
+    </section>
+  </main>
+
+  <footer class="pad" id="contact">
+    <p class="contact"><a href="https://github.com/TheMrRaGe" target="_blank" rel="noopener">Find me on GitHub</a></p>
+    <p style="margin:0"><a id="mail" href="#">Email</a></p>
+    <div class="fine">
+      <span>© <span data-year></span> Heath Dale</span>
+      <span>The network above is a toy model, wired in the browser on every visit.</span>
+    </div>
+  </footer>
+
+  <script src="assets/projects.js"></script>
+  <script src="assets/art.js"></script>
+  <script src="assets/brain.js"></script>
+  <script src="assets/site.js"></script>
+</body>
+</html>
